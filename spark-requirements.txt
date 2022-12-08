@@ -1,0 +1,6 @@
+isodate
+pandas==1.1.5
+pex
+pyarrow==6.0.1
+pyspark==3.0.0
+venv-pack

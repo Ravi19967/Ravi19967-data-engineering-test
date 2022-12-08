@@ -1,0 +1,7 @@
+dynaconf
+isodate
+pandas==1.1.5
+pyarrow==6.0.1
+pyspark==3.0.0
+requests
+venv-pack

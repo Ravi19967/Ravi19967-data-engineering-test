@@ -1,0 +1,32 @@
+version: '2'
+services:
+  hellofresh-spark-master:
+    image: docker.io/bitnami/spark:3.0.0
+    environment:
+      - SPARK_MODE=master
+    volumes:
+      - ./input:/input:ro
+      - ./output:/output:rw
+    ports:
+      - '8080:8080'
+      - '7077:7077'
+  hellofresh-spark-worker:
+    image: docker.io/bitnami/spark:3.0.0
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://hellofresh-spark-master:7077
+      - SPARK_WORKER_MEMORY=1G
+      - SPARK_WORKER_CORES=2
+    volumes:
+      - ./input:/input:ro
+      - ./output:/output:rw
+  hellofresh-logic-executor:
+    build: ./
+    command: bash -c "source logic_venv/bin/activate && PYTHONPATH="." python src/main.py"
+    user: root
+    environment:
+      - GRANT_SUDO=yes
+    volumes:
+    -  ./src:/src
+    -  ./input:/input:ro
+    -  ./output:/output:rw
