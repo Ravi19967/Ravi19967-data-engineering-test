@@ -1,0 +1,17 @@
+[default]
+name= "default"
+spark_host_url= "hellofresh-spark-master:7077"
+events_path= "./input"
+datalake_path= "./output"
+
+[development]
+name= "development"
+spark_host_url= "hellofresh-spark-master:7077"
+events_path= "./input"
+datalake_path= "./output"
+
+[production]
+name= "production"
+spark_host_url= "hellofresh-spark-master:7077"
+events_path= "./input"
+datalake_path= "./output"
